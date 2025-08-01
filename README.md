@@ -135,3 +135,40 @@ Thanks to the mentors, instructors, and peers from IBM and Edunet Foundation for
 
 Let me know if you'd like this formatted for a live GitHub preview or exported as a `.md` file.
 
+
+
+
+
+URLS of the project
+
+# NOTE: you must set $API_KEY below using information retrieved from your IBM Cloud account (https://eu-gb.dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-authentication.html?context=wx)
+
+export API_KEY=<your API key>
+
+export IAM_TOKEN=$(curl --insecure -X POST --location "https://iam.cloud.ibm.com/identity/token" \
+--header "Content-Type: application/x-www-form-urlencoded" \
+--header "Accept: application/json" \
+--data-urlencode "grant_type=urn:ibm:params:oauth:grant-type:apikey" \
+--data-urlencode "apikey=$API_KEY" | jq -r '.access_token')
+
+# TODO:  manually define and pass values to be scored below
+
+curl --location "https://eu-gb.ml.cloud.ibm.com/ml/v4/deployments/fa9abdc1-09d1-4416-9ede-5bea90a25dcc/ai_service_stream?version=2021-05-01" \
+--header "Content-Type: application/json" \
+--header "Accept: application/json" \
+--header "Authorization: Bearer $IAM_TOKEN" \
+--data "`{"messages":[{"content":"","role":""}]}`"
+
+
+
+
+
+APIs  
+
+
+https://eu-gb.ml.cloud.ibm.com/ml/v4/deployments/fa9abdc1-09d1-4416-9ede-5bea90a25dcc/ai_service?version=2021-05-01
+https://eu-gb.ml.cloud.ibm.com/ml/v4/deployments/fa9abdc1-09d1-4416-9ede-5bea90a25dcc/ai_service_stream?version=2021-05-01
+
+
+https://eu-gb.ml.cloud.ibm.com/ml/v4/deployments/fa9abdc1-09d1-4416-9ede-5bea90a25dcc/ai_service?version=2021-05-01
+https://eu-gb.ml.cloud.ibm.com/ml/v4/deployments/fa9abdc1-09d1-4416-9ede-5bea90a25dcc/ai_service_stream?version=2021-05-01
